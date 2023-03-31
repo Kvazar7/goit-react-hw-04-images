@@ -21,7 +21,6 @@ export default function App() {
 	const [imageToShow, setImageToShow] = useState('');
 	const [imageToShowAlt, setImageToShowAlt] = useState('');
 	
-
 	const showModal = ( largFormat, alt ) => {
 		setImageToShow(largFormat);
 		setImageToShowAlt(alt);
@@ -39,15 +38,13 @@ export default function App() {
 		setImagesArray([]);
 		console.log('Looking for an image and photo');
 	}
-	
+
 	const onLoadMore = () => {
-		setPage(prevState => (prevState.page + 1 ))
+		setPage(prevState => prevState + 1 )
 		console.log('Load more')
-		
 	}
 
 	useEffect(() => {
-		
 		if (!searchText
 			// prevState.page < page ||
 			// prevState.searchText !== searchText
@@ -62,13 +59,10 @@ export default function App() {
 					if (data.hits.length === 0) {
 						Notiflix.Notify.warning('Sorry, nothing found')
 					}
-					
 					setimagesTotal(data.total);
 					setImagesArray(prevImagesArray => [...prevImagesArray, ...data.hits]);
 					// setImagesArray(imagesArray.push(...data.hits));
-					console.log(imagesArray)
 				})
-				
 				.catch(error => {
 					Notiflix.Notify.failure(`${error}`)
 					console.log(error)
